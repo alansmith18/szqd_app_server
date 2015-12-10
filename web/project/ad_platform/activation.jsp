@@ -20,12 +20,11 @@
 
         window.onload = function switchChannel()
         {
-            $("#formID").validate({debug:true});
+            $("#formID").validate();
             var select = document.getElementById("channelSelectID");
             select.onchange = function(e)
             {
-                var selectObj = e.target;
-
+                document.getElementById("formID").submit();
             };
 
         };
@@ -66,16 +65,16 @@
                 </select>
             </td>
             <td>
-                <input id="beginDateID" type="text" readonly="readonly" class="input name  w130 " title="请选择时间" required name="dateText" value="${dateText}" onclick="WdatePicker()">
+                <input id="beginDateID" type="text" readonly="readonly" class="input name  w130 " title="请选择时间" required name="dateText" value="${condition.dateText}" onclick="WdatePicker()">
             </td>
             <td>
                 <input id="activationID" type="text" title="必须数字" name="numberOfActivation" digits="true" required />
-                <input type="hidden" name="advertiserID" value="${advertiserID}" } >
+                <input type="hidden" name="adID" value="${adID}" readonly />
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button"  value="提交" onclick="updateActivation()"/>
+                <%--<input type="button"  value="提交" onclick="updateActivation()"/>--%>
             </td>
         </tr>
     </table>

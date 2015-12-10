@@ -48,7 +48,7 @@
     <security:authorize ifAnyGranted="ROLE_OPERATIONS">
     function editActivation(id)
     {
-        window.parent.open("${pageContext.request.contextPath}/ad-alliance/activation-page.do?id="+id);
+        window.parent.open("${pageContext.request.contextPath}/ad-alliance/activation-page.do?adID="+id);
     }
     </security:authorize>
 

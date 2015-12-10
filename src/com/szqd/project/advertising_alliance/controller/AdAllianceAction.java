@@ -96,7 +96,7 @@ public class AdAllianceAction
         String activationsJson = gson.toJson(activation);
         view.addObject("activation",activationsJson);
         view.addObject("channelList",channelList);
-        view.addObject("advertiserID",condition.getAdID());
+        view.addObject("adID",condition.getAdID());
         view.addObject("condition",condition);
         view.setViewName(ACTIVATION_PAGE);
         return view;
