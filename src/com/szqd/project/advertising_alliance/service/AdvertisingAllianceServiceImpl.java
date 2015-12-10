@@ -8,6 +8,7 @@ import com.szqd.project.advertising_alliance.model.Activation;
 import com.szqd.project.advertising_alliance.model.ActivationStatisticsByDayDB;
 import com.szqd.project.advertising_alliance.model.AdvertisingDB;
 import com.szqd.project.advertising_alliance.model.AdvertisingPOJO;
+import com.szqd.project.advertising_alliance.pojo.ActivationPOJO;
 import com.szqd.project.popularize.analysis.model.PlatformUser;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -46,12 +47,16 @@ public class AdvertisingAllianceServiceImpl extends SuperService implements Adve
 //        mongoTemplate.upsert(query,update,ActivationStatisticsByDayDB.ENTITY_NAME);
 //    }
 
-    public List<Activation> queryActivationWithDate(Activation condition)
+    public List<ActivationPOJO> queryActivationWithDate(ActivationPOJO condition)
     {
-        MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
+
         Criteria where = new Criteria();
-//        where.
-//        mongoTemplate.findOne()
+        where = where.and("date").is(condition.getDate());
+        where = where.and("channelID").is(condition.getChannelID());
+        where = where.and("adID").is(condition.getAdID());
+        Query query = new Query(where);
+        MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
+        mongoTemplate.findOne(query,ActivationPOJO.class,ActivationPOJO.ENTITY_NAME);
         return null;
     }
 

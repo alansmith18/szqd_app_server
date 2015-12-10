@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Activation
 {
-    public static final String ENTITY_NAME = "COMMON_TEMP_ACTIVATION";
+    public static final String ENTITY_NAME = "AD_ALLIANCE_ACTIVATION";
 
     private Long adID;
     private Long channelID;
