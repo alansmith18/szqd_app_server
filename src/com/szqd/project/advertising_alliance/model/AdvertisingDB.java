@@ -30,18 +30,9 @@ public class AdvertisingDB {
     private Set<Long> channelIDList;
     private Set<Long> pendingChannelIDList;
 
-    private ArrayList<Activation> activations = null;
-
     private Integer status;//0:等待审核 1:正常使用 2:停止使用
     private Long createTime;
 
-    public ArrayList<Activation> getActivations() {
-        return activations;
-    }
-
-    public void setActivations(ArrayList<Activation> activations) {
-        this.activations = activations;
-    }
 
     public Long getId() {
         return id;

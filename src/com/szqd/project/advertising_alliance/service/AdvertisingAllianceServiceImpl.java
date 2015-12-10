@@ -25,25 +25,34 @@ import java.util.Set;
  */
 public class AdvertisingAllianceServiceImpl extends SuperService implements AdvertisingAllianceService {
 
-    /**
-     * 保存激活
-     * @param advertiserID
-     * @param channelID
-     */
-    public void saveActivation(Integer advertiserID,Integer channelID)
+//    /**
+//     * 保存激活
+//     * @param advertiserID
+//     * @param channelID
+//     */
+//    public void saveActivation(Integer advertiserID,Integer channelID)
+//    {
+//        MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
+//        Long today = DateUtils.getTodayForSpecifiedTime(0, 0, 0, 0).getTimeInMillis();
+//        Long id = Long.valueOf(new StringBuilder().append(advertiserID).append(channelID).append(today).toString());
+//
+//        Query query = new Query(Criteria.where("_id").is(id));
+//        Update update = new Update();
+//        update.setOnInsert("_id", id);
+//        update.setOnInsert("advertiserID", advertiserID);
+//        update.setOnInsert("channelID", channelID);
+//        update.inc("activationNumber", 1);
+//        update.setOnInsert("createTime", today);
+//        mongoTemplate.upsert(query,update,ActivationStatisticsByDayDB.ENTITY_NAME);
+//    }
+
+    public List<Activation> queryActivationWithDate(Activation condition)
     {
         MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
-        Long today = DateUtils.getTodayForSpecifiedTime(0, 0, 0, 0).getTimeInMillis();
-        Long id = Long.valueOf(new StringBuilder().append(advertiserID).append(channelID).append(today).toString());
-
-        Query query = new Query(Criteria.where("_id").is(id));
-        Update update = new Update();
-        update.setOnInsert("_id", id);
-        update.setOnInsert("advertiserID", advertiserID);
-        update.setOnInsert("channelID", channelID);
-        update.inc("activationNumber", 1);
-        update.setOnInsert("createTime", today);
-        mongoTemplate.upsert(query,update,ActivationStatisticsByDayDB.ENTITY_NAME);
+        Criteria where = new Criteria();
+//        where.
+//        mongoTemplate.findOne()
+        return null;
     }
 
     public List<PlatformUser> queryUsersWithIDs(Set<Long> ids)

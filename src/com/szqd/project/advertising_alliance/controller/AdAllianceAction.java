@@ -77,8 +77,8 @@ public class AdAllianceAction
         AdvertisingPOJO advertising = this.allianceService.fetchAdvertisingByIDFromDB(id);
         ModelAndView view = new ModelAndView();
         Gson gson = new Gson();
-        String activationsJson = gson.toJson(advertising.getActivations());
-        view.addObject("activations",activationsJson);
+//        String activationsJson = gson.toJson(advertising.getActivations());
+//        view.addObject("activations",activationsJson);
         view.addObject("channelList",channelList);
         view.addObject("advertiserID",id);
         view.setViewName(ACTIVATION_PAGE);

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="mobile-lock:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/mobile_lock_war_exploded</output-path>
+  <artifact type="exploded-war" name="szqd-app-server">
+    <output-path>$PROJECT_DIR$/out/artifacts/szqd_app_server</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

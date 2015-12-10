@@ -35,12 +35,7 @@ public interface AdvertisingAllianceService
      */
     public List<AdvertisingPOJO> listAdvertising(Pager pager,AdvertisingPOJO queryCondition,String ...fields);
 
-    /**
-     * 保存激活
-     * @param advertiserID
-     * @param channelID
-     */
-    public void saveActivation(Integer advertiserID,Integer channelID);
+
 
     public List<PlatformUser> queryUsersWithIDs(Set<Long> ids);
 
