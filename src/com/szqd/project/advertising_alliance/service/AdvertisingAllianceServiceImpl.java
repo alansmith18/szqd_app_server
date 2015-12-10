@@ -26,28 +26,8 @@ import java.util.Set;
  */
 public class AdvertisingAllianceServiceImpl extends SuperService implements AdvertisingAllianceService {
 
-//    /**
-//     * 保存激活
-//     * @param advertiserID
-//     * @param channelID
-//     */
-//    public void saveActivation(Integer advertiserID,Integer channelID)
-//    {
-//        MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
-//        Long today = DateUtils.getTodayForSpecifiedTime(0, 0, 0, 0).getTimeInMillis();
-//        Long id = Long.valueOf(new StringBuilder().append(advertiserID).append(channelID).append(today).toString());
-//
-//        Query query = new Query(Criteria.where("_id").is(id));
-//        Update update = new Update();
-//        update.setOnInsert("_id", id);
-//        update.setOnInsert("advertiserID", advertiserID);
-//        update.setOnInsert("channelID", channelID);
-//        update.inc("activationNumber", 1);
-//        update.setOnInsert("createTime", today);
-//        mongoTemplate.upsert(query,update,ActivationStatisticsByDayDB.ENTITY_NAME);
-//    }
 
-    public List<ActivationPOJO> queryActivationWithDate(ActivationPOJO condition)
+    public ActivationPOJO queryActivationWithDate(ActivationPOJO condition)
     {
 
         Criteria where = new Criteria();
@@ -56,9 +36,12 @@ public class AdvertisingAllianceServiceImpl extends SuperService implements Adve
         where = where.and("adID").is(condition.getAdID());
         Query query = new Query(where);
         MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
-        mongoTemplate.findOne(query,ActivationPOJO.class,ActivationPOJO.ENTITY_NAME);
-        return null;
+        ActivationPOJO activation = mongoTemplate.findOne(query,ActivationPOJO.class,ActivationPOJO.ENTITY_NAME);
+        return activation;
+
     }
+
+
 
     public List<PlatformUser> queryUsersWithIDs(Set<Long> ids)
     {
@@ -78,21 +61,6 @@ public class AdvertisingAllianceServiceImpl extends SuperService implements Adve
 
     }
 
-    public List<PlatformUser> queryUsersWithChannel()
-    {
-        List<PlatformUser> platformUsers = null;
-
-        MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
-        Query query = new Query();
-        Criteria criteria = Criteria.where("role").is(UsersRole.ROLE_AD_PLATFORM_CHANNEL.getRoleId());
-        query.fields().include("_id");
-        query.fields().include("platformName");
-        query.addCriteria(criteria);
-        platformUsers = mongoTemplate.find(query, PlatformUser.class, PlatformUser.ENTITY_NAME);
-
-        return platformUsers;
-
-    }
 
     /**
      * 根据条件分页罗列广告

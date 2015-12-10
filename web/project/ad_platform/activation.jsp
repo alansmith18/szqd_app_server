@@ -13,43 +13,19 @@
 <head>
     <script src="${pageContext.request.contextPath}/resource/js/jquery-1.8.2.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resource/js/jquery.validate.js" type="text/javascript"></script>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/My97DatePicker/WdatePicker.js"></script>
     <title>激活</title>
     <script>
-        var activationsData = ${activations};
-        if (activationsData == null)
-        {
-            selectObj = new Array();
-        }
-
-
-        function change(selectObj)
-        {
-            var selectValue = parseInt(selectObj.value);
-
-            var activationVal = null;
-            for (var i = 0; i < activationsData.length; i++)
-            {
-                var activationVar = activationsData[i];
-                if (activationVar.channelID == selectValue)
-                {
-                    activationVal = activationVar.numberOfActivation;
-                }
-            }
-
-            var activationObj = document.getElementById("activationID");
-            activationObj.setAttribute("value",activationVal);
-        }
+        var activationsData = ${activation};
 
         window.onload = function switchChannel()
         {
             $("#formID").validate({debug:true});
             var select = document.getElementById("channelSelectID");
-            change(select);
             select.onchange = function(e)
             {
                 var selectObj = e.target;
-                change(selectObj);
+
             };
 
         };
@@ -78,16 +54,19 @@
     </script>
 </head>
 <body>
-    <form id="formID" action="${pageContext.request.contextPath}/ad-alliance/update-activation.do" >
+    <form id="formID" action="${pageContext.request.contextPath}/ad-alliance/activation-page.do" >
     <table>
 
         <tr>
             <td>
-                <select id="channelSelectID" name="channelID"  >
+                <select id="channelSelectID" name="channelID" required title="没有渠道选择该广告" >
                     <c:forEach items="${channelList}" var="channelVar">
                         <option value="${channelVar.id}">${channelVar.platformName}</option>
                     </c:forEach>
                 </select>
+            </td>
+            <td>
+                <input id="beginDateID" type="text" readonly="readonly" class="input name  w130 " title="请选择时间" required name="dateText" value="${dateText}" onclick="WdatePicker()">
             </td>
             <td>
                 <input id="activationID" type="text" title="必须数字" name="numberOfActivation" digits="true" required />

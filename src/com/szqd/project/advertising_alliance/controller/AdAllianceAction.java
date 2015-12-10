@@ -5,7 +5,10 @@ import com.szqd.framework.model.Pager;
 import com.szqd.framework.model.SelectEntity;
 import com.szqd.framework.security.UserDetailsEntity;
 import com.szqd.framework.security.UsersRole;
+import com.szqd.framework.util.DateUtils;
+import com.szqd.project.advertising_alliance.model.Activation;
 import com.szqd.project.advertising_alliance.model.AdvertisingPOJO;
+import com.szqd.project.advertising_alliance.pojo.ActivationPOJO;
 import com.szqd.project.advertising_alliance.service.AdvertisingAllianceService;
 import com.szqd.project.popularize.analysis.model.PlatformUser;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -71,16 +71,33 @@ public class AdAllianceAction
 
     private static final String ACTIVATION_PAGE = "/project/ad_platform/activation.jsp";
     @RequestMapping(value = "/activation-page.do")
-    public ModelAndView activationPage(Long id)
+    public ModelAndView activationPage(ActivationPOJO condition)
     {
-        List<PlatformUser> channelList = this.allianceService.queryUsersWithChannel();
-        AdvertisingPOJO advertising = this.allianceService.fetchAdvertisingByIDFromDB(id);
+
+        AdvertisingPOJO advertising = this.allianceService.fetchAdvertisingByIDFromDB(condition.getAdID());
+        List<PlatformUser> channelList = this.allianceService.queryUsersWithIDs(advertising.getChannelIDList());
+        Long channelID = condition.getChannelID();
+        if (channelID == null){
+            if (!channelList.isEmpty())
+            {
+                condition.setChannelID(channelList.get(0).getId());
+            }
+        }
+        Long date = condition.getDate();
+        if (date == null){
+            date = DateUtils.truncateDate(Calendar.getInstance()).getTimeInMillis();
+            condition.setDate(date);
+        }
+
+        ActivationPOJO activation = this.allianceService.queryActivationWithDate(condition);
+
         ModelAndView view = new ModelAndView();
         Gson gson = new Gson();
-//        String activationsJson = gson.toJson(advertising.getActivations());
-//        view.addObject("activations",activationsJson);
+        String activationsJson = gson.toJson(activation);
+        view.addObject("activation",activationsJson);
         view.addObject("channelList",channelList);
-        view.addObject("advertiserID",id);
+        view.addObject("advertiserID",condition.getAdID());
+        view.addObject("condition",condition);
         view.setViewName(ACTIVATION_PAGE);
         return view;
     }

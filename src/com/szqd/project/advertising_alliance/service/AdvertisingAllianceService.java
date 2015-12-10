@@ -2,6 +2,7 @@ package com.szqd.project.advertising_alliance.service;
 
 import com.szqd.framework.model.Pager;
 import com.szqd.project.advertising_alliance.model.AdvertisingPOJO;
+import com.szqd.project.advertising_alliance.pojo.ActivationPOJO;
 import com.szqd.project.popularize.analysis.model.PlatformUser;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface AdvertisingAllianceService
 
     public List<PlatformUser> queryUsersWithIDs(Set<Long> ids);
 
-    public List<PlatformUser> queryUsersWithChannel();
+
 
     public void updateActivation(Long advertiserID,Long channelID,Long numberOfActivation);
 
@@ -49,6 +50,6 @@ public interface AdvertisingAllianceService
      */
     public void upsetPlatformUser(PlatformUser platformUserEdit);
 
-
+    public ActivationPOJO queryActivationWithDate(ActivationPOJO condition);
 
 }
