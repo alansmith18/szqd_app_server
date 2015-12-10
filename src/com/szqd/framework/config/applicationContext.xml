@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--基本配置-->
+    <import resource="classpath:com/szqd/framework/config/spring-transaction.xml"/>
+    <import resource="classpath:com/szqd/framework/config/spring-redis.xml"/>
+    <import resource="classpath:com/szqd/framework/config/spring-security.xml"/>
+    <!--<import resource="classpath:com/szqd/framework/config/spring-security-ad-alliance.xml"/>-->
+    <import resource="classpath:com/szqd/framework/config/spring-mongodb.xml"/>
+
+    <!--手机锁-->
+    <!--<import resource="classpath:com/szqd/framework/config/spring-mybatis.xml"/>-->
+    <import resource="classpath:com/szqd/project/mobile/lock/config/lock-context.xml"/>
+
+
+    <!-- 推广项目-->
+    <import resource="classpath:com/szqd/project/popularize/analysis/config/popularize-context.xml"/>
+
+    <!-- 公用项目-->
+    <import resource="classpath:com/szqd/project/common/config/common-context.xml"/>
+
+    <!-- 手机电筒-->
+    <import resource="classpath:com/szqd/project/flashlightmaster/config/flashlight-context.xml"/>
+
+    <!-- 抢红包-->
+    <import resource="classpath:com/szqd/project/red/gift/config/red-gift-context.xml" />
+
+    <!-- 神指拨号-->
+    <import resource="classpath:com/szqd/project/smart/dial/config/smart-dial-context.xml" />
+
+    <!-- 广告平台-->
+    <import resource="classpath:com/szqd/project/advertising_alliance/config/ad-alliance-context.xml"/>
+
+    <!-- 跟踪统计-->
+    <import resource="classpath:com/szqd/project/tracking_statistics/config/tracking-statistics-context.xml"/>
+</beans>

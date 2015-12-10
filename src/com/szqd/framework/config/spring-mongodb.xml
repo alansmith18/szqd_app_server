@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+
+       ">
+
+
+    <!--103.41.52.151-->
+
+    <mongo:mongo-client id="mongoClient"  host="127.0.0.1" port="27018"  >
+    <!--<mongo:mongo-client id="mongoClient"  host="192.168.0.4" port="27018"  >-->
+    <!--<mongo:mongo-client id="mongoClient"  host="103.41.52.150" port="27018"   >-->
+
+
+        <mongo:client-options
+                connect-timeout="30000" write-concern="Acknowledged"
+                connections-per-host="10000"
+                min-connections-per-host="1000"
+                max-wait-time="240000"
+                socket-keep-alive="true"
+                max-connection-idle-time="80000"
+                max-connection-life-time="0"
+
+                socket-timeout="240000"
+                heartbeat-connect-timeout="240000"
+                heartbeat-socket-timeout="240000"
+                threads-allowed-to-block-for-connection-multiplier="1000"
+                />
+                <!--heartbeat-connect-timeout=""-->
+                <!--heartbeat-frequency=""-->
+                <!--heartbeat-socket-timeout=""-->
+                <!--max-connection-idle-time=""-->
+                <!--max-connection-life-time=""-->
+                <!--max-wait-time=""-->
+                <!--min-heartbeat-frequency=""-->
+                <!--read-preference=""-->
+                <!--socket-keep-alive=""-->
+                <!--socket-timeout=""-->
+                <!--threads-allowed-to-block-for-connection-multiplier=""-->
+
+    </mongo:mongo-client>
+
+    <mongo:db-factory dbname="popularize" mongo-ref="mongoClient"  id="mongoDbFactory" write-concern="JOURNAL_SAFE" />
+
+    <bean id="defaultMongoTypeMapper"
+          class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+        <constructor-arg name="typeKey"><null/></constructor-arg>
+    </bean>
+
+    <mongo:mapping-converter db-factory-ref="mongoDbFactory" type-mapper-ref="defaultMongoTypeMapper"/>
+
+    <mongo:template db-factory-ref="mongoDbFactory" id="mongoTemplate" converter-ref="mappingConverter" />
+
+    <bean id="mongoDao" class="com.szqd.framework.persistence.MongoDao" >
+        <property name="mongoTemplate" ref="mongoTemplate"/>
+    </bean>
+
+
+
+</beans>

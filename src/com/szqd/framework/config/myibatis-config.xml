@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration >
+
+	<settings>
+		<setting name="defaultExecutorType" value="BATCH"/>
+		<setting name="cacheEnabled" value="false"/>
+	</settings>
+
+	<environments default="development">
+		<environment id="developmentMYSQL">
+			<transactionManager type="MANAGED">
+				<property name="closeConnection" value="false"/>
+			</transactionManager>
+			<dataSource type="POOLED">
+				
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers >
+
+		<mapper  resource="com/szqd/project/mobile/lock/service/AppAnalysis-service-sql.xml" />
+	</mappers>
+	
+	
+</configuration>

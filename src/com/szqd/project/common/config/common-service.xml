@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.szqd.project.common.service.FeedbackServiceImpl" id="feedbackService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.ProjectServiceImpl" id="projectService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.RecommendServiceImpl" id="recommendService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.SkinServiceImpl" id="skinService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.AdvertisingServiceImpl" id="advertisingService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.MusicServiceImpl" id="musicService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.PushMessageServiceImpl" id="pushMessageService">
+        <property name="coreDao"  ref="coreDao"/>
+    </bean>
+    
+    <bean class="com.szqd.project.common.service.AccountServiceImpl" id="accountService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.SwitchServiceImpl" id="switchService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.ImageServiceImpl" id="imageService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+</beans>

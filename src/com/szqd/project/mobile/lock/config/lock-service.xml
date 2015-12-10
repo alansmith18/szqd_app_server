@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.szqd.project.mobile.lock.service.ApplicationServiceImpl" id="applicationService">
+
+    </bean>
+
+    <bean id="testService" class="com.szqd.project.mobile.lock.service.TestServiceImpl">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+
+    <bean class="com.szqd.project.mobile.lock.service.WeatherServiceImpl" id="weatherService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+
+    <bean class="com.szqd.project.mobile.lock.service.AppAnalysisServiceImpl" id="analysisService" scope="prototype">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.mobile.lock.service.WallpaperServiceImpl" id="wallpaperService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.service.VersionServiceImpl" id="versionService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+    <bean class="com.szqd.project.mobile.lock.service.ThemeServiceImpl" id="themeService">
+        <property name="coreDao" ref="coreDao"/>
+    </bean>
+
+
+
+</beans>

@@ -1,0 +1,37 @@
+﻿.onShow{
+	background: url('../images/validate/onShow.gif') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	height: 22px;
+	line-height: 22px;
+	color:#999999;
+
+}
+.onCorrect{
+	background: url('../images/validate/onCorrect.png') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	color:green;
+	height: 22px;
+	line-height: 22px;
+	display: inline-block;
+}
+.onError{
+	background: url('../images/validate/onError.png') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	color:red;
+	margin-left: 5px;
+	height: 22px;
+	line-height: 22px;
+	display: inline-block;
+}
+.onFocus{
+	background: url('../images/validate/onFocus.gif') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	height: 22px;
+	line-height: 22px;
+	color:#999999;
+
+}

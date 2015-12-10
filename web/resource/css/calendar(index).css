@@ -1,0 +1,10 @@
+﻿/********首页日历控件*******/
+.date table {width:165px; margin:0 auto; border-collapse:collapse;font:normal 12px/1.5em Arial, Verdana, Lucida, Helvetica, sans-serif; margin-bottom:8px;}
+.date caption {height:24px;text-align:left;color:#F32600;}
+.date td, th {width:24px;height:20px;text-align:center;border:1px solid #DCDCDC;}
+.date th {color:#000000;background-color:#EEEEEE;}
+.date td.current {font-weight:bold;color:#FFFFFF;background-color:#999999;}
+.date td.last_month, td.next_month {color:#DFDFDF;}
+.date tr>td, tr>td+td+td+td+td+td+td {color:#B3222B;background-color:#F8F8F8;}
+.date tr>td+td {color:#333333;background-color:#FFFFFF;}
+.date col.day_off {color:#B3222B;background-color:#F8F8F8;}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http pattern="/login.jsp*" security="none"/>
+
+    <!--access-denied-page="/login.jsp"-->
+    <security:http   >
+        <security:intercept-url pattern="/resource/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/error.jsp**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+        <security:intercept-url pattern="/module/admin/**" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/module/platform/**" access="ROLE_ADMIN"/>
+        <!--<security:intercept-url pattern="/module/index.jsp**" access="ROLE_MANAGER,ROLE_ADMIN,ROLE_CLIENT_DEVELOPER"/>-->
+        <security:intercept-url pattern="/popularize/add-activation.do**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/popularize/index.do" access="ROLE_ACTIVITY_CHANNEL,ROLE_ADMIN,ROLE_CLIENT_DEVELOPER,ROLE_ART_DEVELOPER,ROLE_OPERATIONS,ROLE_AD_PLATFORM_ADVERTISER,ROLE_AD_PLATFORM_CHANNEL"/>
+        <security:intercept-url pattern="/popularize/**" access="ROLE_ACTIVITY_CHANNEL,ROLE_ADMIN"/>
+
+        <security:intercept-url pattern="/wallpaper/send-wallpaper-toclient.do**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/wallpaper/**.jpg" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/wallpaper/**.jpeg" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/wallpaper/**.png" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/wallpaper/upload-wallpaper.do**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/wallpaper/kind-of-papercount.do**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+        <security:intercept-url pattern="/wallpaper/**" access="ROLE_ADMIN,ROLE_ART_DEVELOPER"/>
+
+        <security:intercept-url pattern="/module/wallpaper/**" access="ROLE_MANAGER,ROLE_ART_DEVELOPER"/>
+
+        <security:form-login  login-processing-url="/login.do" password-parameter="user.loginPwd" username-parameter="user.loginName"
+                             login-page='/login.jsp' default-target-url="/popularize/index.do" always-use-default-target="true" authentication-failure-url="/login.jsp?loginError=1"/>
+        <security:logout invalidate-session="true" logout-url="/logout.do" logout-success-url="/login.jsp" />
+    </security:http>
+
+    <bean class="com.szqd.framework.security.SecurityUserService" id="securityUserService">
+        <property name="mongoDao" ref="mongoDao"/>
+    </bean>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="securityUserService" />
+    </security:authentication-manager>
+
+
+
+</beans>

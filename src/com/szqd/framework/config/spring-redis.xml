@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+
+        <!--设置最大空闲连接数 默认为8个-->
+        <!-- 1000-->
+        <property name="maxIdle" value="1000"></property>
+
+        <!--设置最大连接数 默认为8个-->
+        <!-- 10000-->
+        <property name="maxTotal" value="10000"></property>
+
+        <!--获取连接时,最大的等待毫秒数-->
+        <property name="maxWaitMillis" value="120000"></property>
+
+        <!--切断连接的最小空闲时间 默认1800000毫秒(30分钟)-->
+        <property name="minEvictableIdleTimeMillis" value="600000"></property>
+
+        <!--<property name="softMinEvictableIdleTimeMillis" value="300000"></property>-->
+
+        <!--每次逐出检查时 逐出的最大数目 如果为负数就是 : 1/abs(n), 默认3-->
+        <!--<property name="numTestsPerEvictionRun" value="3"></property>-->
+
+        <!--逐出扫描的时间间隔(毫秒) 如果为负数,则不运行逐出线程, 默认-1-->
+        <!--<property name="timeBetweenEvictionRunsMillis" value="300000"></property>-->
+
+        <!--连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true-->
+        <property name="blockWhenExhausted" value="true"></property>
+    </bean>
+
+    <!--103.41.52.151-->
+
+    <bean id="jedisConnFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  >
+        <property name="poolConfig" ref="jedisPoolConfig"></property>
+        <property name="timeout" value="240000"></property>
+        <property name="usePool" value="true"/>
+        <property name="hostName" value="127.0.0.1"/>
+        <!--<property name="hostName" value="103.41.52.151"/>-->
+        <property name="password" value="@.Com*xXx*Szqd%(1982@11#29)" />
+        <property name="database" value="0" />
+        <!--<property name="convertPipelineAndTxResults" value=""/>-->
+        <!--<property name="shardInfo" value=""/>-->
+        <property name="port" value="6379" />
+
+    </bean>
+
+    <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" id="stringRedisSerializer" />
+
+    <bean class="org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer" id="jackson2JsonRedisSerializer">
+        <constructor-arg index="0" type="java.lang.Class" value="java.lang.Object"/>
+    </bean>
+
+
+    <!-- redis template definition -->
+    <bean id="redisTemplateWithJsonSerializer"
+          class="org.springframework.data.redis.core.RedisTemplate" >
+        <property name="connectionFactory" ref="jedisConnFactory" />
+        <property name="keySerializer" ref="stringRedisSerializer" />
+        <property name="valueSerializer" ref="jackson2JsonRedisSerializer" />
+        <property name="hashKeySerializer" ref="stringRedisSerializer" />
+        <property name="hashValueSerializer" ref="jackson2JsonRedisSerializer" />
+
+    </bean>
+
+
+    <bean class="com.szqd.framework.persistence.RedisDao" id="redisDao" >
+        <property name="redisTemplateWithJsonSerializer" ref="redisTemplateWithJsonSerializer"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="quartz-2.2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../java_lib/quartz-2.2.1/lib/quartz-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java_lib/quartz-2.2.1/lib/quartz-jobs-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java_lib/quartz-2.2.1/lib/slf4j-api-1.6.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../java_lib/quartz-2.2.1/lib/slf4j-log4j12-1.6.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/quartz-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

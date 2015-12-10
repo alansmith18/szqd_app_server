@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.springframework.data:spring-data-redis:1.6.0.RELEASE" type="repository">
+    <properties maven-id="org.springframework.data:spring-data-redis:1.6.0.RELEASE" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/1.6.0.RELEASE/spring-data-redis-1.6.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

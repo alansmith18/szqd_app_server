@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="testController" class="com.szqd.project.mobile.lock.controller.TestController" scope="prototype" >
+        <property name="testService" ref="testService"/>
+    </bean>
+
+    <bean id="weatherController" class="com.szqd.project.mobile.lock.controller.WeatherController" scope="prototype">
+        <property name="weatherService" ref="weatherService"/>
+    </bean>
+
+    <bean id="appAnalysisController" class="com.szqd.project.mobile.lock.controller.AppAnalysisController" scope="prototype">
+        <property name="appAnalysisService" ref="analysisService"/>
+    </bean>
+
+    <bean class="com.szqd.project.mobile.lock.controller.WallpaperController" id="wallpaperController" scope="prototype">
+        <property name="wallpaperService" ref="wallpaperService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.VersionController" id="versionController" scope="prototype">
+        <property name="versionService" ref="versionService"/>
+    </bean>
+
+    <bean class="com.szqd.project.mobile.lock.controller.MobileLockSecurityController" scope="prototype"  ></bean>
+
+    <bean class="com.szqd.project.mobile.lock.controller.ThemeController" scope="prototype">
+        <property name="themeService" ref="themeService"/>
+    </bean>
+
+
+    <import resource="classpath:com/szqd/project/mobile/lock/config/quartz.xml"/>
+
+</beans>

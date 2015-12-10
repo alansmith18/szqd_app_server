@@ -1,0 +1,12 @@
+.step-normal-icon
+{
+    width: 128px;height: 60px;
+    background-image: url("../images/topic_linkIcon4.png");
+}
+
+
+.step-warning-icon
+{
+    width: 128px;height: 60px;
+    background-image: url("../images/topic_linkIcon2.png");
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.szqd.project.common.controller.FeedbackController" id="feedbackController" scope="prototype">
+        <property name="feedbackService" ref="feedbackService"/>
+    </bean>
+
+
+    <bean class="com.szqd.project.common.controller.ProjectController" scope="prototype">
+        <property name="projectService" ref="projectService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.RecommendController" scope="prototype">
+        <property name="recommendService" ref="recommendService"/>
+        <property name="projectService" ref="projectService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.SkinController" scope="prototype">
+        <property name="skinService" ref="skinService"/>
+        <property name="projectService" ref="projectService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.AdvertisingController" scope="prototype" >
+        <property name="projectService" ref="projectService"/>
+        <property name="advertisingService" ref="advertisingService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.MusicController" scope="prototype">
+        <property name="projectService" ref="projectService"/>
+        <property name="musicService" ref="musicService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.PushMessageController" scope="prototype">
+        <property name="pushMessageService" ref="pushMessageService"/>
+        <property name="projectService" ref="projectService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.AccountController" scope="prototype">
+        <property name="accountService" ref="accountService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.ImageRedirectController" scope="prototype">
+
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.SwitchController" scope="prototype">
+        <property name="switchService" ref="switchService"/>
+    </bean>
+
+    <bean class="com.szqd.project.common.controller.ImageController" scope="prototype">
+        <property name="imageService" ref="imageService"/>
+    </bean>
+
+</beans>

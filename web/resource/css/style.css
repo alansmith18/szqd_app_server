@@ -1,0 +1,17 @@
+
+.floatl { float:left;}
+.floatr { float:right;}
+
+
+#sideFrame { width: 188px; border: 1px solid #e6e6e6; border-radius: 3px;}
+#sideHandle { display: block; width: 10px; height: 50px; margin-top: 40px; background: url('../images/btn/handle.png') no-repeat 0 0;}
+#sideHandle:hover { background-image: url('../images/btn/handle_hover.png');}
+#mainFrame { margin:10px 10px 0 210px}
+#page-body { padding-right: 5px;}
+#bodyer.fold { margin-left: 0;}
+#bodyer.fold #sideFrame { display: none;}
+#bodyer.fold #sideHandle { background-position: 0 -50px;}
+#bodyer.fold #mainFrame { margin-left: 20px;}
+
+#siteTitle { font-family: '黑体', '宋体', Tahoma; font-size: 1.8em; line-height: 50px;}
+#siteTitle strong { color: #000;}

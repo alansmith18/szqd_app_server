@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http pattern="/login.jsp*" security="none"/>
+
+    <security:http   >
+
+        <security:intercept-url pattern="/popularize/index.do" access="ROLE_OPERATIONS,ROLE_AD_PLATFORM_ADVERTISER,ROLE_AD_PLATFORM_CHANNEL"/>
+
+        <security:intercept-url pattern="/project/ad_platform/welcome/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+        <security:form-login  login-processing-url="/login.do" password-parameter="user.loginPwd" username-parameter="user.loginName"
+                             login-page='/project/ad_platform/welcome/login.html' default-target-url="/popularize/index.do" always-use-default-target="true" authentication-failure-url="/login.jsp?loginError=1"/>
+        <security:logout invalidate-session="true" logout-url="/logout.do" logout-success-url="/login.jsp" />
+    </security:http>
+
+    <bean class="com.szqd.framework.security.SecurityUserService" id="securityUserService">
+        <property name="mongoDao" ref="mongoDao"/>
+    </bean>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="securityUserService" />
+    </security:authentication-manager>
+
+
+
+</beans>

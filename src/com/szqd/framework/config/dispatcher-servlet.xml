@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<context:annotation-config  />-->
+    <mvc:annotation-driven conversion-service="conversionService"   >
+        <mvc:message-converters register-defaults="true">
+            <bean
+                    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+                <property name="prefixJson" value="false"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <!--<value>text/json;charset=GBK</value>-->
+                        <!--<value>text/html;charset=GBK</value>-->
+                    </list>
+                </property>
+
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="serializationInclusion" value="NON_NULL"/>
+
+                    </bean>
+                </property>
+
+            </bean>
+
+
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!--<context:component-scan base-package="com.szqdd.project.lock.controller"/>-->
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        
+        <property name="converters">
+            <set>
+                <bean class="com.szqd.framework.service.DateConventer">
+
+                </bean>
+
+            </set>
+        </property>
+    </bean>
+
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="5242880"></property>
+        <property name="uploadTempDir" value="/uploadTempDir"></property>
+    </bean>
+
+
+    <context:component-scan base-package="com.szqd" use-default-filters="false">
+        <context:include-filter  type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"  />
+    </context:component-scan>
+
+    <mvc:resources mapping="/resource/**" location="/resource/" />
+    <mvc:resources mapping="/project/ad_platform/haoee/**" location="/project/ad_platform/haoee/"/>
+
+    <!--<bean class="com.szqd.framework.controller.ImageInterceptor" id="imageInterceptor" />-->
+
+    <!--<mvc:interceptors >-->
+        <!--<mvc:interceptor >-->
+            <!--<mvc:mapping path="/**/*.jpg"  />-->
+            <!--<ref bean="imageInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+    <!-- 手机锁-->
+    <import resource="classpath:com/szqd/project/mobile/lock/config/lock-controller.xml"/>
+
+    <!-- 推广平台-->
+    <import resource="classpath:com/szqd/project/popularize/analysis/config/popularize-controller.xml"/>
+
+    <!-- 跳转-->
+    <import resource="classpath:com/szqd/project/forward/action/apk-controller.xml"/>
+
+    <!-- 公用-->
+    <import resource="classpath:com/szqd/project/common/config/common-controller.xml"/>
+
+    <!-- 手电筒-->
+    <import resource="classpath:com/szqd/project/flashlightmaster/config/flashlight-controller.xml"/>
+
+    <!-- 抢红包-->
+    <import resource="classpath:com/szqd/project/red/gift/config/red-gift-controller.xml"/>
+
+    <!-- 神指拨号-->
+    <import resource="classpath:com/szqd/project/smart/dial/config/smart-dial-controller.xml"/>
+
+    <!-- 广告平台-->
+    <import resource="classpath:com/szqd/project/advertising_alliance/config/ad-alliance-controller.xml"/>
+
+    <!-- 跟踪统计-->
+    <import resource="classpath:com/szqd/project/tracking_statistics/config/tracking-statistics-controller.xml"/>
+</beans>
+
