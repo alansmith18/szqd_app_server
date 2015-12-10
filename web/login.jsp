@@ -72,7 +72,7 @@
                     <input class="button hide" name="submit" type="submit" value="登录" />
                     <%--<a href="${pageContext.request.contextPath}/tracking-statistics/tracking-data.do?id=1">测试</a>--%>
                 </div>
-sha sha sha
+
             </fieldset>
         </form>
     </div>
