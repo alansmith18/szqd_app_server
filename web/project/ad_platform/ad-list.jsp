@@ -1,6 +1,7 @@
 <%@ page import="com.szqd.framework.config.SystemConfigParameter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
@@ -181,12 +182,14 @@ $(function() {
                                         <s:radiobuttons path="queryCondition.status" items="${statusList}" itemLabel="text" itemValue="value" />
                                     </td>
                                     </security:authorize>
-                                    <%--<td class="td_border_l td_title2 border_t">是否过期：</td>--%>
-                                    <%--<td class="td_border_l border_t ">--%>
-                                        <%--<input type="checkbox" name="isValidateExpire" value="false"--%>
-                                                <%--<c:if test="${queryCondition.isValidateExpire != null}">checked</c:if>--%>
-                                                <%--/>过期--%>
-                                    <%--</td>--%>
+
+                                </tr>
+
+                                <tr class="">
+                                    <td class="td_border_l td_title2 border_t">激活时间：</td>
+                                    <td class="td_border_l border_t ">
+                                        <input id="dateTextID" type="text" readonly="readonly" class="input name  w130 " title="请选择时间" required name="dateText" value="${condition.dateText}" onclick="WdatePicker({maxDate:'%y-%M-%d'})">
+                                    </td>
                                 </tr>
 
                             </table>
@@ -230,11 +233,7 @@ $(function() {
 
                             <tr class="tr_bg02" style=" border-top:none;"  >
                                 <th class=" bold" style="width: 60px">图片</th>
-
-                                <security:authorize ifAnyGranted="ROLE_AD_PLATFORM_CHANNEL,ROLE_OPERATIONS">
                                 <th class=" bold" style="width: 60px">激活数</th>
-                                </security:authorize>
-
                                 <th class=" bold" style="width: 60px">名称</th>
                                 <th class=" bold" style="width: 140px">地址</th>
                                 <th class=" bold" style="width: 140px">描述</th>
@@ -269,15 +268,9 @@ $(function() {
                                   <img width="72px" height="72px" src="<%=SystemConfigParameter.HTTP_IMAGE_DOMAIN()%>${pageContext.request.contextPath}${listVar.pic}">
                               </td>
 
-                              <security:authorize ifAnyGranted="ROLE_AD_PLATFORM_CHANNEL">
                               <td>
-                                  <c:forEach items="${listVar.activations}" var="actVar">
-                                    <c:if test="${actVar.channelID == loginUserID}">
-                                        ${actVar.numberOfActivation}
-                                    </c:if>
-                                  </c:forEach>
+                                  ${listVar.numberOfActivation}
                               </td>
-                              </security:authorize>
 
                               <td >
                                   ${listVar.name}
@@ -303,14 +296,15 @@ $(function() {
 
                                   <security:authorize ifAllGranted="ROLE_OPERATIONS">
                                       <a onclick="edit('${listVar.id}')">编辑</a>
-                                      <a onclick="editActivation('${listVar.id}')">激活数</a>
+                                      <c:if test="${listVar != null && fn:length(listVar.channelIDList) > 0}">
+                                          <a onclick="editActivation('${listVar.id}')">激活数</a>
+                                      </c:if>
                                   </security:authorize>
 
                                   <security:authorize ifAllGranted="ROLE_AD_PLATFORM_CHANNEL">
                                       <a onclick="selectAd('${listVar.id}')">选择</a>
                                   </security:authorize>
 
-                                  <%--<a onclick="expired('${listVar.id}')">过期</a>--%>
                               </td>
                           </tr>
                           </c:forEach>

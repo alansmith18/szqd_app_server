@@ -2,6 +2,7 @@ package com.szqd.project.advertising_alliance.model;
 
 import com.szqd.framework.model.SelectEntity;
 import com.szqd.project.popularize.analysis.model.PlatformUser;
+import org.springframework.data.annotation.Transient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,27 @@ public class AdvertisingPOJO extends AdvertisingDB {
                 pendingChannelTextList.add(s);
             }
         }
+    }
+
+    @Transient
+    private Long numberOfActivation = null;
+
+    public Long getNumberOfActivation() {
+        return numberOfActivation;
+    }
+
+    public void setNumberOfActivation(Long numberOfActivation) {
+        this.numberOfActivation = numberOfActivation;
+    }
+
+    private Long totalActivation = null;
+
+    public Long getTotalActivation() {
+        return totalActivation;
+    }
+
+    public void setTotalActivation(Long totalActivation) {
+        this.totalActivation = totalActivation;
     }
 
     public Integer getPendingSize()

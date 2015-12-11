@@ -101,8 +101,10 @@ public class AdAllianceAction
 
     private static final String LIST_AD_PAGE = "/project/ad_platform/ad-list.jsp";
     @RequestMapping(value = "/list-advertising.do",method = RequestMethod.GET)
-    public ModelAndView listAdvertising(Pager pager,AdvertisingPOJO queryCondition)
+    public ModelAndView listAdvertising(Pager pager,AdvertisingPOJO queryCondition,ActivationPOJO actCondition)
     {
+        pager.setCapacity(10);
+
         Object loginUserObj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (loginUserObj == null || "anonymousUser".equals(loginUserObj))
         {
@@ -126,6 +128,21 @@ public class AdAllianceAction
         if (isAdvertiser) queryCondition.setUid(loginUser.getUserEntity().getId());
 
         List<AdvertisingPOJO> list = this.allianceService.listAdvertising(pager,queryCondition);
+        boolean hasNextPage = list.size() != pager.getCapacity();
+
+        for (AdvertisingPOJO adVar : list) {
+            Long date = actCondition.getDate();
+            if (date == null){
+                actCondition.setDate(DateUtils.truncateDate(Calendar.getInstance()).getTimeInMillis());
+            }
+            actCondition.setAdID(adVar.getId());
+            actCondition.setChannelID(loginUser.getUserEntity().getId());
+            ActivationPOJO activationPOJO = this.allianceService.queryActivationWithDate(actCondition);
+            if (activationPOJO != null) {
+                adVar.setNumberOfActivation(activationPOJO.getNumberOfActivation());
+            }
+        }
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("list", list);
         modelAndView.addObject("queryCondition",queryCondition);
@@ -146,7 +163,7 @@ public class AdAllianceAction
         statusList.add(s2);
         statusList.add(s3);
         modelAndView.addObject("statusList",statusList);
-
+        modelAndView.addObject("hasNextPage",hasNextPage);
         modelAndView.setViewName(LIST_AD_PAGE);
         return modelAndView;
     }
