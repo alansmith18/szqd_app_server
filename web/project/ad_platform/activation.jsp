@@ -16,18 +16,29 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/My97DatePicker/WdatePicker.js"></script>
     <title>激活</title>
     <script>
-        var activationsData = ${activation};
 
         window.onload = function switchChannel()
         {
-            $("#formID").validate();
+//            $("#formID").validate();
             var select = document.getElementById("channelSelectID");
             select.onchange = function(e)
             {
-                document.getElementById("formID").submit();
+                var channelID = e.target.value;
+//                alert(channelID);
+                var dateText = document.getElementById("dateTextID").value;
+                var param = "channelID="+channelID+"&adID=${condition.adID}&dateText="+dateText;
+                window.location.href = "${pageContext.request.contextPath}/ad-alliance/activation-page.do?"+param;
             };
 
         };
+
+        function queryForm()
+        {
+            var channelID = document.getElementById("channelSelectID").value;
+            var dateText = document.getElementById("dateTextID").value;
+            var param = "channelID="+channelID+"&adID=${condition.adID}&dateText="+dateText;
+            window.location.href = "${pageContext.request.contextPath}/ad-alliance/activation-page.do?"+param;
+        }
 
         function updateActivation()
         {
@@ -58,23 +69,23 @@
 
         <tr>
             <td>
-                <select id="channelSelectID" name="channelID" required title="没有渠道选择该广告" >
-                    <c:forEach items="${channelList}" var="channelVar">
-                        <option value="${channelVar.id}">${channelVar.platformName}</option>
-                    </c:forEach>
-                </select>
+                <s:select id="channelSelectID" path="condition.channelID" required="true" title="没有渠道选择该广告" >
+                    <s:options items="${channelList}" itemLabel="platformName" itemValue="id"/>
+                </s:select>
             </td>
+
             <td>
-                <input id="beginDateID" type="text" readonly="readonly" class="input name  w130 " title="请选择时间" required name="dateText" value="${condition.dateText}" onclick="WdatePicker()">
+                <input id="dateTextID" type="text" readonly="readonly" class="input name  w130 " title="请选择时间" required name="dateText" value="${condition.dateText}" onclick="WdatePicker({maxDate:'%y-%M-%d',onpicked:queryForm})">
             </td>
+
             <td>
-                <input id="activationID" type="text" title="必须数字" name="numberOfActivation" digits="true" required />
-                <input type="hidden" name="adID" value="${adID}" readonly />
+                <input id="activationID" type="text" title="必须数字" name="numberOfActivation" digits="true" required value="${condition.numberOfActivation}" />
+                <input type="hidden" name="adID" value="${condition.adID}" readonly />
             </td>
         </tr>
         <tr>
             <td>
-                <%--<input type="button"  value="提交" onclick="updateActivation()"/>--%>
+                <input type="button"  value="提交" onclick="updateActivation()"/>
             </td>
         </tr>
     </table>

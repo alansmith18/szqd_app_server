@@ -1,5 +1,6 @@
 package com.szqd.project.advertising_alliance.service;
 
+import com.mongodb.WriteResult;
 import com.szqd.framework.model.Pager;
 import com.szqd.framework.security.UsersRole;
 import com.szqd.framework.service.SuperService;
@@ -123,25 +124,13 @@ public class AdvertisingAllianceServiceImpl extends SuperService implements Adve
 
 
 
-    public void updateActivation(Long advertiserID,Long channelID,Long numberOfActivation)
+    public void updateActivation(ActivationPOJO activation)
     {
         MongoTemplate mongoTemplate = this.getCoreDao().getMongoTemplate();
-        Query query = new Query(Criteria.where("_id").is(advertiserID).and("activations.channelID").is(channelID));//.and("activations").elemMatch(Criteria.where("channelID").is(channelID)));
-        boolean exists = mongoTemplate.exists(query,AdvertisingDB.ENTITY_NAME);
+        Query query = new Query(Criteria.where("adID").is(activation.getAdID()).and("channelID").is(activation.getChannelID()).and("date").is(activation.getDate()));
         Update update = new Update();
-        Activation activation = new Activation();
-        activation.setChannelID(channelID);
-        activation.setNumberOfActivation(numberOfActivation);
-
-        if (exists)
-        {
-            update.set("activations.$", activation);
-        }
-        else{
-            update.push("activations", activation);
-            query = new Query(Criteria.where("_id").is(advertiserID));
-        }
-        mongoTemplate.updateFirst(query,update,AdvertisingDB.class,AdvertisingDB.ENTITY_NAME);
+        update.set("numberOfActivation",activation.getNumberOfActivation());
+        mongoTemplate.upsert(query,update,Activation.ENTITY_NAME);
     }
 
     /**

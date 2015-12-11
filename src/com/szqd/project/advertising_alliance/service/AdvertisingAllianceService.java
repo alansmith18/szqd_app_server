@@ -42,7 +42,7 @@ public interface AdvertisingAllianceService
 
 
 
-    public void updateActivation(Long advertiserID,Long channelID,Long numberOfActivation);
+    public void updateActivation(ActivationPOJO activation);
 
     /**
      * 保存或更新PlatformUser

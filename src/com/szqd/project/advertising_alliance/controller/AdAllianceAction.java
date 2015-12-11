@@ -64,9 +64,9 @@ public class AdAllianceAction
 
 
     @RequestMapping(value = "/update-activation.do")
-    public void updateActivation(Long advertiserID,Long channelID,Long numberOfActivation)
+    public void updateActivation(ActivationPOJO activation)
     {
-        this.allianceService.updateActivation(advertiserID,channelID,numberOfActivation);
+        this.allianceService.updateActivation(activation);
     }
 
     private static final String ACTIVATION_PAGE = "/project/ad_platform/activation.jsp";
@@ -90,14 +90,11 @@ public class AdAllianceAction
         }
 
         ActivationPOJO activation = this.allianceService.queryActivationWithDate(condition);
-
+        if (activation == null) activation = condition;
         ModelAndView view = new ModelAndView();
-        Gson gson = new Gson();
-        String activationsJson = gson.toJson(activation);
-        view.addObject("activation",activationsJson);
+
         view.addObject("channelList",channelList);
-        view.addObject("adID",condition.getAdID());
-        view.addObject("condition",condition);
+        view.addObject("condition",activation);
         view.setViewName(ACTIVATION_PAGE);
         return view;
     }
