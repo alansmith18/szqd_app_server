@@ -10,9 +10,9 @@
 
     <!--103.41.52.151-->
 
-    <mongo:mongo-client id="mongoClient"  host="127.0.0.1" port="27018"  >
-    <!--<mongo:mongo-client id="mongoClient"  host="192.168.0.4" port="27018"  >-->
-    <!--<mongo:mongo-client id="mongoClient"  host="103.41.52.150" port="27018"   >-->
+    <!--<mongo:mongo-client id="mongoClient"  host="127.0.0.1" port="27018"  >-->
+    <mongo:mongo-client id="mongoClient"  host="192.168.0.4" port="27018"  credentials="szqdappserver:szqdappserverguyimeiyouguilvde@popularize" >
+    <!--<mongo:mongo-client id="mongoClient"  host="103.41.52.151" port="27018"  credentials="szqdappserver:szqdappserverguyimeiyouguilvde@popularize"  >-->
 
 
         <mongo:client-options
@@ -42,6 +42,8 @@
                 <!--threads-allowed-to-block-for-connection-multiplier=""-->
 
     </mongo:mongo-client>
+
+
 
     <mongo:db-factory dbname="popularize" mongo-ref="mongoClient"  id="mongoDbFactory" write-concern="JOURNAL_SAFE" />
 
