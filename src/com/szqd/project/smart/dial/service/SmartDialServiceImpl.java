@@ -3,6 +3,7 @@ package com.szqd.project.smart.dial.service;
 import com.szqd.framework.service.SuperService;
 import com.szqd.framework.util.SecurityUtil;
 import com.szqd.framework.util.URLConnectionUtils;
+import com.szqd.framework.util.URLConnectionUtilsParam;
 import com.szqd.project.smart.dial.model.SmartDialUserDownloadDB;
 import com.szqd.project.smart.dial.model.SmartDialUserVisitAppStoreDB;
 import org.apache.log4j.Logger;
@@ -104,7 +105,12 @@ public class SmartDialServiceImpl extends SuperService implements SmartDialServi
         param.put("acttime",String.valueOf(now.getTimeInMillis()/1000));
         param.put("sign",signOfDomob);
         try {
-            URLConnectionUtils.send(addr,param,"GET","UTF-8");
+            URLConnectionUtilsParam paramForRequest = new URLConnectionUtilsParam();
+            paramForRequest.encoding = "UTF-8";
+            paramForRequest.urlAddr = addr;
+            paramForRequest.params = param;
+            paramForRequest.method = "GET";
+            URLConnectionUtils.send(paramForRequest);
         } catch (Exception e) {
             LOGGER.error("com.szqd.project.smart.dial.service.SmartDialServiceImpl.sendSmartDialDownloadToDomob(String mac,String macmd5,String ifa,String ifamd5)",e);
             throw new RuntimeException("发送多盟回调出错");

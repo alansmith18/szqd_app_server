@@ -15,9 +15,9 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) throws Exception
     {
-        String URL_SPORTS_NEWS = "http://2345api.dfshurufa.com/top/shoudiantong";
-        String newsJson = URLConnectionUtils.send(URL_SPORTS_NEWS, null, "GET", "UTF-8");
-        System.out.println(newsJson);
+//        String URL_SPORTS_NEWS = "http://2345api.dfshurufa.com/top/shoudiantong";
+//        String newsJson = URLConnectionUtils.send(URL_SPORTS_NEWS, null, "GET", "UTF-8");
+//        System.out.println(newsJson);
     }
 }
 

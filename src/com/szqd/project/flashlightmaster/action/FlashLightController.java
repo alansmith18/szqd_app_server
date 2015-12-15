@@ -2,6 +2,7 @@ package com.szqd.project.flashlightmaster.action;
 
 import com.szqd.framework.controller.SpringMVCController;
 import com.szqd.framework.util.URLConnectionUtils;
+import com.szqd.framework.util.URLConnectionUtilsParam;
 import com.szqd.project.flashlightmaster.service.FlashLightService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,7 +46,13 @@ public class FlashLightController extends SpringMVCController
         param.put("pagesize","20");
         param.put("page",page);
         param.put("sort","desc");
-        String result = URLConnectionUtils.send(url, param, "GET", "UTF-8");
+
+        URLConnectionUtilsParam requestParam = new URLConnectionUtilsParam();
+        requestParam.urlAddr = url;
+        requestParam.params = param;
+        requestParam.method = "GET";
+        requestParam.encoding = "UTF-8";
+        String result = URLConnectionUtils.send(requestParam);
 //        Gson gson = new Gson();
 //        HashMap<String,Object> map = gson.fromJson(result,HashMap.class);
 //        LinkedHashMap resultData = (LinkedHashMap)map.get("result");

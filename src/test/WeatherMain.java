@@ -135,7 +135,7 @@ public class WeatherMain {
         HtmlPage page = wc.getPage("http://www.weather.com.cn/alarm/newalarmcontent.shtml?file=1010713-20151110062200-1302.html");
         String html = page.asXml();
         param.put("html", html);
-        html = URLConnectionUtils.send("http://localhost:9888/app/weather/fetch-weather-for-disaster-warning.do", param, "POST", "UTF-8");
+//        html = URLConnectionUtils.send("http://localhost:9888/app/weather/fetch-weather-for-disaster-warning.do", param, "POST", "UTF-8");
         System.out.println(html);
 
 

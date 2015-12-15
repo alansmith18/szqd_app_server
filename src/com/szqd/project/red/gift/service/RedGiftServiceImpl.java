@@ -6,6 +6,7 @@ import com.szqd.framework.service.SuperService;
 import com.szqd.framework.util.BeanUtil;
 import com.szqd.framework.util.DateUtils;
 import com.szqd.framework.util.URLConnectionUtils;
+import com.szqd.framework.util.URLConnectionUtilsParam;
 import com.szqd.project.red.gift.model.GiftEntityDB;
 import com.szqd.project.red.gift.model.GiftEntityPOJO;
 import org.apache.log4j.Logger;
@@ -573,7 +574,11 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
      */
     public String getHotNews() throws Exception
     {
-        String newsJson = URLConnectionUtils.send(URL_HOT_NEWS, null, "GET", "UTF-8");
+        URLConnectionUtilsParam param = new URLConnectionUtilsParam();
+        param.urlAddr = URL_HOT_NEWS;
+        param.method = "GET";
+        param.encoding = "UTF-8";
+        String newsJson = URLConnectionUtils.send(param);
         return newsJson;
     }
 
@@ -586,7 +591,11 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
      */
     public String getSportsNews() throws Exception
     {
-        String newsJson = URLConnectionUtils.send(URL_SPORTS_NEWS, null, "GET", "UTF-8");
+        URLConnectionUtilsParam param = new URLConnectionUtilsParam();
+        param.urlAddr = URL_SPORTS_NEWS;
+        param.method = "GET";
+        param.encoding = "UTF-8";
+        String newsJson = URLConnectionUtils.send(param);
         return newsJson;
     }
 
