@@ -57,7 +57,7 @@
 
     <!-- redis template definition -->
     <bean id="redisTemplateWithJsonSerializer"
-          class="org.springframework.data.redis.core.RedisTemplate" >
+          class="org.springframework.data.redis.core.RedisTemplate" scope="prototype" >
         <property name="connectionFactory" ref="jedisConnFactory" />
         <property name="keySerializer" ref="stringRedisSerializer" />
         <property name="valueSerializer" ref="jackson2JsonRedisSerializer" />
