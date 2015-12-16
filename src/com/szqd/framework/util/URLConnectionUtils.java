@@ -98,13 +98,15 @@ public class URLConnectionUtils {
             }
             else{
                 sslContext = getSSLContext();
-                HostnameVerifier allHostsValid = new HostnameVerifier() {
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-                    }
-                };
-                httpsCon.setHostnameVerifier(allHostsValid);
             }
+
+            HostnameVerifier allHostsValid = new HostnameVerifier() {
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            };
+            httpsCon.setHostnameVerifier(allHostsValid);
+
             httpsCon.setSSLSocketFactory(sslContext.getSocketFactory());
         }
 
@@ -192,7 +194,7 @@ public class URLConnectionUtils {
         }
     }
 
-    private static final String KEY_STORE_TYPE_BKS = "bks";//证书类型 固定值
+    private static final String KEY_STORE_TYPE_BKS = "JKS";//证书类型 固定值
     private static final String KEY_STORE_TYPE_P12 = "PKCS12";//证书类型 固定值
     private static final String KEY_STORE_CLIENT_PATH = "com/szqd/framework/security/ssl/client.p12";//客户端要给服务器端认证的证书
     private static final String KEY_STORE_TRUST_PATH = "com/szqd/framework/security/ssl/client.truststore";//客户端验证服务器端的证书库
@@ -205,9 +207,9 @@ public class URLConnectionUtils {
      */
     private static SSLContext getAuthSSLContext() throws Exception {
 
-        // 服务器端需要验证的客户端证书
+//        // 服务器端需要验证的客户端证书
         KeyStore keyStore = KeyStore.getInstance(KEY_STORE_TYPE_P12);
-        // 客户端信任的服务器端证书
+//        // 客户端信任的服务器端证书
         KeyStore trustStore = KeyStore.getInstance(KEY_STORE_TYPE_BKS);
 
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -223,7 +225,7 @@ public class URLConnectionUtils {
         SSLContext sslContext = SSLContext.getInstance("TLS");
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(trustStore);
-        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("X509");
+        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
         keyManagerFactory.init(keyStore, KEY_STORE_PASSWORD.toCharArray());
         sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
         return sslContext;

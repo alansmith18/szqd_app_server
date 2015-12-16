@@ -8,6 +8,10 @@ import com.szqd.framework.util.URLConnectionUtilsParam;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
+import java.security.Provider;
+import java.security.Security;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * Created by like on 4/27/15.
@@ -18,11 +22,22 @@ public class M {
         param.encoding = "UTF-8";
         param.urlAddr = "https://127.0.0.1:9888/app/login.jsp";
         param.method = "GET";
-        param.isSSLAuth = false;
+        param.isSSLAuth = true;
         String result = URLConnectionUtils.send(param);
         System.out.println(result);
-//        URL url = new URL("hTTPS://www.baidu.com");
-//        System.out.println(url.getProtocol());
+
+//        StringBuffer sb = new StringBuffer();
+//        Provider[] p = Security.getProviders();
+//        for (int i = 0; i < p.length; i++) {
+//            sb.append("\nProvider : " + p[i].toString() + "\n");
+//            Set s = p[i].keySet();
+//            Object[] o = s.toArray();
+//            Arrays.sort(o);
+//            for (int j = 1; j < o.length; j++) {
+//                sb.append(o[j].toString() + ", ");
+//            }
+//        }
+//        System.out.println(sb.toString());
     }
 
 
