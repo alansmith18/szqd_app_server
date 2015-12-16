@@ -200,6 +200,7 @@ public class URLConnectionUtils {
     private static final String KEY_STORE_TRUST_PATH = "com/szqd/framework/security/ssl/client.truststore";//客户端验证服务器端的证书库
     private static final String KEY_STORE_PASSWORD = "like1982";// 客户端证书密码
     private static final String KEY_STORE_TRUST_PASSWORD = "like1982";//客户端证书库密码
+
     /**
      * 获取需要验证的SSLContext
      *
