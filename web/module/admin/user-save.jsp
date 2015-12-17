@@ -189,21 +189,21 @@
             </tr>
 
 
-            <tr id="platformNameTrID" style="display: none;" >
+            <tr id="platformNameTrID"  >
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>运营商名称</td>
                 <td class=" w245"  colspan="3">
                     <input type="text" id="platformNameID" title="运营商名称为2到10个字符" class="input w200"  name="platformName" required minlength="2" maxlength="10"   >
                 </td>
             </tr>
 
-            <tr id="scaleTrID" style="display: none;">
+            <tr id="scaleTrID" >
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>系数</td>
                 <td class=" w245"  colspan="3">
                     <input type="text" id="scaleID" disabled title="系数为1到6位的数字" class="input w200"  name="scale" minlength="1" maxlength="6" number="true" required value="1"  >
                 </td>
             </tr>
 
-            <tr id="incrementalTrID"  style="display: none;">
+            <tr id="incrementalTrID"  >
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>增量</td>
                 <td class=" w245"  colspan="3">
                     <input type="text" id="incrementalID" disabled title="系数为1到8位的整数" class="input w200"  name="incremental" minlength="1" maxlength="8" digits="true" required value="0"  >
@@ -213,7 +213,8 @@
             <tr>
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>用户角色</td>
                 <td class=" w245"  colspan="3">
-                    <select name="role" cssClass=" input"  onchange="changeRole(this.value)" >
+                    <%--onchange="changeRole(this.value)"--%>
+                    <select name="role" cssClass=" input"   >
                         <c:forEach items="${roleList}" var="role">
                             <option value="${role.roleId}">${role.roleText}</option>
                         </c:forEach>

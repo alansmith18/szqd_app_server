@@ -21,6 +21,7 @@ public class M {
         URLConnectionUtilsParam param = new URLConnectionUtilsParam();
         param.encoding = "UTF-8";
         param.urlAddr = "https://127.0.0.1:9888/app/login.jsp";
+//        param.urlAddr = "https://www.taobao.com";
         param.method = "GET";
         param.isSSLAuth = true;
         String result = URLConnectionUtils.send(param);

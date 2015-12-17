@@ -23,7 +23,7 @@
 <link href="${pageContext.request.contextPath}/resource/css/calendar.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"  href="${pageContext.request.contextPath}/resource/css/ui_style.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-1.8.2.min.js"></script>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/My97DatePicker/WdatePicker.js"></script>
 
 
 <script type="text/javascript">

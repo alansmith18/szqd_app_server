@@ -51,18 +51,18 @@
             });
 
 
-            var role = ${user.role};
-            if (role == 2) {
-                $("#scaleTrID").css("display", "");
-                $("#incrementalTrID").css("display", "");
-                $("#platformNameTrID").css("display", "");
-            }
-            else
-            {
-                $("#scaleTrID").css("display", "none");
-                $("#incrementalTrID").css("display", "none");
-                $("#platformNameTrID").css("display", "none");
-            }
+            <%--var role = ${user.role};--%>
+            <%--if (role == 2) {--%>
+                <%--$("#scaleTrID").css("display", "");--%>
+                <%--$("#incrementalTrID").css("display", "");--%>
+                <%--$("#platformNameTrID").css("display", "");--%>
+            <%--}--%>
+            <%--else--%>
+            <%--{--%>
+                <%--$("#scaleTrID").css("display", "none");--%>
+                <%--$("#incrementalTrID").css("display", "none");--%>
+                <%--$("#platformNameTrID").css("display", "none");--%>
+            <%--}--%>
         });
 
 
@@ -199,7 +199,7 @@
                 </td>
             </tr>
 
-            <tr id="platformNameTrID" style="display: none;" >
+            <tr id="platformNameTrID"  >
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>供应商名称</td>
                 <td class=" w245"  colspan="3">
 
@@ -207,7 +207,7 @@
 
                 </td>
             </tr>
-            <tr id="incrementalTrID"  style="display: none;" >
+            <tr id="incrementalTrID"   >
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>增量</td>
                 <td class=" w245"  colspan="3">
                     <input type="text" title="增量必须为整数" class="input w200" id="incrementalID" name="incremental" value="${user.incremental}" required digits="true" maxlength="3" >
@@ -215,7 +215,7 @@
                 </td>
             </tr>
 
-            <tr id="scaleTrID" style="display: none;">
+            <tr id="scaleTrID" >
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>系数</td>
                 <td class=" w245"  colspan="3">
                     <input type="text" title="比例必须为数字" class="input w200" id="scaleID" name="scale" value="${user.scale}" required number="true" maxlength="3" >
@@ -227,7 +227,8 @@
             <tr>
                 <td class="td_title_left w130"><span class="red">&nbsp;</span>角色</td>
                 <td class=" w245"  colspan="3">
-                    <s:select path="user.role" onchange="changeRole(this.value)">
+                    <%--onchange="changeRole(this.value)"--%>
+                    <s:select path="user.role" >
                         <s:options items="${roleList}" itemValue="roleId" itemLabel="roleText"></s:options>
                     </s:select>
 
