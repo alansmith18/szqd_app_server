@@ -96,8 +96,12 @@
                         <input class="form-input" type="checkbox" id="checkbox-4" name="message" value="会自动停止运行"/>
                     </div>
                     <div class="form-group clearfix">
+                        <label class="form-label">微信/QQ帐号被查</label>
+                        <input class="form-input" type="checkbox" id="checkbox-5" name="message" value="微信/QQ帐号被查" />
+                    </div>
+                    <div class="form-group clearfix">
                         <label class="form-label">爱上别人了</label>
-                        <input class="form-input" type="checkbox" id="checkbox-5" name="message" value="爱上别人了"/>
+                        <input class="form-input" type="checkbox" id="checkbox-6" name="message" value="爱上别人了"/>
                     </div>
             
                     <div class="form-group-tt">

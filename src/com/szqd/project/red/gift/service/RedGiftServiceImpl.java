@@ -20,6 +20,7 @@ import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by like on 9/9/15.
@@ -572,14 +573,24 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
      * @return
      * @throws Exception
      */
-    public String getHotNews() throws Exception
+    public Object getHotNews() throws Exception
     {
+        RedisTemplate redisTemplate = this.getCoreDao().getRedisTemplateWithJsonSerializer();
+        BoundValueOperations boundValueOps = redisTemplate.boundValueOps(HOT_NEWS_TASK_KEY);
+
+        return boundValueOps.get();
+    }
+
+    private static final String HOT_NEWS_TASK_KEY = "HOT_NEWS_TASK_KEY";
+    public void fetchHotNewsForTask() throws Exception {
         URLConnectionUtilsParam param = new URLConnectionUtilsParam();
         param.urlAddr = URL_HOT_NEWS;
         param.method = "GET";
         param.encoding = "UTF-8";
         String newsJson = URLConnectionUtils.send(param);
-        return newsJson;
+        RedisTemplate redisTemplate = this.getCoreDao().getRedisTemplateWithJsonSerializer();
+        BoundValueOperations boundValueOps = redisTemplate.boundValueOps(HOT_NEWS_TASK_KEY);
+        boundValueOps.set(newsJson);
     }
 
     private static final String URL_SPORTS_NEWS = "http://2345api.dfshurufa.com/tiyu/shoudiantong";
@@ -589,14 +600,23 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
      * @return
      * @throws Exception
      */
-    public String getSportsNews() throws Exception
+    public Object getSportsNews() throws Exception
     {
+        RedisTemplate redisTemplate = this.getCoreDao().getRedisTemplateWithJsonSerializer();
+        BoundValueOperations boundValueOps = redisTemplate.boundValueOps(SPORTS_NEWS_TASK_KEY);
+        return boundValueOps.get();
+    }
+
+    private static final String SPORTS_NEWS_TASK_KEY = "SPORTS_NEWS_TASK_KEY";
+    public void fetchSportsNewsForTask() throws Exception {
         URLConnectionUtilsParam param = new URLConnectionUtilsParam();
         param.urlAddr = URL_SPORTS_NEWS;
         param.method = "GET";
         param.encoding = "UTF-8";
         String newsJson = URLConnectionUtils.send(param);
-        return newsJson;
+        RedisTemplate redisTemplate = this.getCoreDao().getRedisTemplateWithJsonSerializer();
+        BoundValueOperations boundValueOps = redisTemplate.boundValueOps(SPORTS_NEWS_TASK_KEY);
+        boundValueOps.set(newsJson);
     }
 
     private static final String URL_MORE_NEWS = "http://toutiao.eastday.com/?qid=shoudiantong";

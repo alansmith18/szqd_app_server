@@ -60,14 +60,14 @@ public interface RedGiftService
      * @return
      * @throws Exception
      */
-    public String getHotNews() throws Exception;
+    public Object getHotNews() throws Exception;
 
     /**
      * 获取体育新闻
      * @return
      * @throws Exception
      */
-    public String getSportsNews() throws Exception;
+    public Object getSportsNews() throws Exception;
 
     /**
      * 获取更多新闻
