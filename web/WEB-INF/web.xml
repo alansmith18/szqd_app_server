@@ -5,6 +5,11 @@
          version="3.0">
 
     <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>webName.app.szqd.com/app</param-value>
+    </context-param>
+
+    <context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:/com/szqd/framework/config/log4j.properties</param-value>
     </context-param>
