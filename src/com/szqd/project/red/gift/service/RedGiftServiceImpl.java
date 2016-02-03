@@ -566,7 +566,7 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
     }
 
 
-    private static final String URL_HOT_NEWS = "http://2345api.dfshurufa.com/top/shoudiantong";
+    private static final String URL_HOT_NEWS = "http://2345api.dfshurufa.com/top/shenzhishoudiantong";
 
     /**
      * 获取热门新闻
@@ -593,7 +593,7 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
         boundValueOps.set(newsJson);
     }
 
-    private static final String URL_SPORTS_NEWS = "http://2345api.dfshurufa.com/tiyu/shoudiantong";
+    private static final String URL_SPORTS_NEWS = "http://2345api.dfshurufa.com/tiyu/shenzhishoudiantong";
 
     /**
      * 获取体育新闻
@@ -619,7 +619,7 @@ public class RedGiftServiceImpl extends SuperService implements RedGiftService {
         boundValueOps.set(newsJson);
     }
 
-    private static final String URL_MORE_NEWS = "http://toutiao.eastday.com/?qid=shoudiantong";
+    private static final String URL_MORE_NEWS = "http://toutiao.eastday.com/?qid=shenzhishoudiantong";
 
     /**
      * 获取更多新闻

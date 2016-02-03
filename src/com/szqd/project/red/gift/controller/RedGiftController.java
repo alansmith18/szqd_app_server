@@ -16,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * Created by like on 9/10/15.
  */
+@CrossOrigin(allowCredentials = "false", exposedHeaders = {"Access-Control-Allow-Origin"})
 @RestController
 @RequestMapping(value = "/red-gift")
 public class RedGiftController  {
@@ -94,7 +96,8 @@ public class RedGiftController  {
         if (formType == null)
         {
             formType = 1;
-            pager.setCapacity(20);
+            pager.setCapacity(15);
+//            pager.setCapacity(pager.);
         }
 
         List<GiftEntityPOJO> giftList = redGiftService.fetchRedGiftContentListByPage(condition,pager);

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.springframework:spring-tx:4.2.4.RELEASE" type="repository">
+    <properties maven-id="org.springframework:spring-tx:4.2.4.RELEASE" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-tx/4.2.4.RELEASE/spring-tx-4.2.4.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -207,7 +207,7 @@ $(function() {
                                     <td>${versionVar.appName}</td>
                                     <td>${versionVar.versionNo}</td>
                                       <td>${versionVar.channelNo}</td>
-                                    <td>${versionVar.url}</td>
+                                    <td style="display: block;width: 400px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">${versionVar.url}</td>
                                     <td><a href="#" onclick="edit('${versionVar.id}')">编辑</a></td>
                                   </tr>
                                   </c:forEach>
